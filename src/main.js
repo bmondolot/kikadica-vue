@@ -3,8 +3,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Resource from 'vue-resource'
-import HomeView from './components/HomeView.vue'
-import AuthorsView from './components/AuthorsView.vue'
+import HomeView from './pages/HomeView.vue'
+import AuthorsView from './pages/AuthorsView.vue'
 
 // install router
 Vue.use(VueRouter)
@@ -20,11 +20,7 @@ var router = new VueRouter({
   ]
 })
 
+/* eslint-disable no-new */
 new Vue({
   router
 }).$mount('#app')
-
-/* eslint-disable no-new */
-/*
- * new Vue({ el: '#app', template: '<App/>', components: { App } })
- */
