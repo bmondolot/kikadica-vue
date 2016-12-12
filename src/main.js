@@ -4,7 +4,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Resource from 'vue-resource'
 import HomeView from './pages/HomeView.vue'
-import AuthorsView from './pages/AuthorsView.vue'
+import TopAuthorsView from './pages/TopAuthorsView.vue'
+import TopQuotedUsersView from './pages/TopQuotedUsersView.vue'
+import UserView from './pages/UserView.vue'
+import QuotesArchiveView from './pages/QuotesArchiveView.vue'
 
 // install router
 Vue.use(VueRouter)
@@ -16,7 +19,10 @@ Vue.use(Resource)
 var router = new VueRouter({
   routes: [
      {path: '/', component: HomeView},
-     {path: '/top-authors', component: AuthorsView}
+     {path: '/top-authors', component: TopAuthorsView},
+     {path: '/top-quoted', component: TopQuotedUsersView},
+     {path: '/archive', component: QuotesArchiveView},
+     {name: 'user', path: '/user/:name', component: UserView}
   ]
 })
 

@@ -52,14 +52,14 @@ export default {
     },
     getAuthors: function () {
       this.$http.get(config.API_URL + '/authors').then((response) => {
-        this.quotes = response.data
+        this.authors = response.data
       }, (response) => {
         console.log('Authors could not be loaded')
       })
     },
     getQuotedUsers: function () {
       this.$http.get(config.API_URL + '/quoted').then((response) => {
-        this.quotes = response.data
+        this.quotedUsers = response.data
       }, (response) => {
         console.log('Quoted users could not be loaded')
       })

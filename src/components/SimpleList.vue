@@ -3,22 +3,19 @@
       <h2>{{ listTitle }}</h2>
       <ul>
         <li v-for="item in items">
-          {{ item }}
+          <user-link v-bind:name="item"></user-link>
         </li>
       </ul>
     </div>
  </template>
 
 <script>
+import UserLink from './UserLink.vue'
+
 export default {
   name: 'simple-list',
   props: ['items', 'listTitle'],
-  data () {
-    return {
-      items: [],
-      listTitle: ''
-    }
-  }
+  components: { UserLink }
 }
 
 </script>
