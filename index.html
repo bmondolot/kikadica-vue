@@ -5,20 +5,23 @@
     <title>Le Kikadiça</title>
   </head>
   <body>
-<div id="app">
-  <h1>Le Kikadiça</h1>
-  <p>
-    <!-- use router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- <router-link> will be rendered as an `<a>` tag by default -->
-    <router-link to="/">Go to Home</router-link>
-    <router-link to="/top-authors">Top authors</router-link>
-    <router-link to="/top-quoted">Top quoted users</router-link>
-    <router-link to="/archive">Dig in the archive</router-link>
-  </p>
-  <!-- route outlet -->
-  <!-- component matched by the route will render here -->
-  <router-view></router-view>
-</div>
+    <div id="app">
+      <h1>Le Kikadiça</h1>
+      <img src="/static/logo.png">
+      <nav>
+        <!-- use router-link component for navigation. -->
+        <!-- specify the link by passing the `to` prop. -->
+        <!-- <router-link> will be rendered as an `<a>` tag by default -->
+        <router-link to="/">Go to Home</router-link>
+        <router-link to="/top-authors">Top authors</router-link>
+        <router-link to="/top-quoted">Top quoted users</router-link>
+        <router-link to="/archive">Dig in the archive</router-link>
+      </nav>
+      <!-- route outlet -->
+      <!-- component matched by the route will render here -->
+      <div class="main-content">
+        <router-view></router-view>
+      </div>
+    </div>
   </body>
 </html>
