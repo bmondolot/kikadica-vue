@@ -3,7 +3,7 @@
       <h2>{{ listTitle }}</h2>
       <ul>
         <li v-for="item in items">
-          <user-link v-bind:name="item"></user-link>
+          <user-link v-bind:name="item._id"></user-link> : {{ item.totalQuotes }}
         </li>
       </ul>
     </div>
@@ -13,7 +13,7 @@
 import UserLink from './UserLink.vue'
 
 export default {
-  name: 'simple-list',
+  name: 'user-list',
   props: ['items', 'listTitle'],
   components: { UserLink }
 }

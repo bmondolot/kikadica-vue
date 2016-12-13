@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="random-quote">
+      <div class="quoted">{{ randomQuote.quotedUser }} said (the {{ randomQuote.creationDate | moment }})</div>
+      <div class="quote">{{ randomQuote.text }}</div>
+      <div class="author">brought back by {{ randomQuote.authorUser }}</div>
+    </div>
     <div class="top10-list">
       <h2>The last quotes</h2>
       <ul>
@@ -10,61 +15,70 @@
           </li>
       </ul>
     </div>
-    <simple-list
+    <user-list
       v-bind:items="authors"
       list-title="Authors"
     >
-    </simple-list>
-    <simple-list
+    </user-list>
+    <user-list
       v-bind:items="quotedUsers"
       list-title="Quoted users"
     >
-    </simple-list>
+    </user-list>
   </div>
 </template>
 
 <script>
 import config from '../config'
-import SimpleList from '../components/SimpleList.vue'
+import UserList from '../components/UserList.vue'
 import moment from 'moment'
 
 export default {
   name: 'HomeView',
   components: {
-    SimpleList
+    UserList
   },
   data () {
     return {
       quotes: [],
       authors: [],
-      quotedUsers: []
+      quotedUsers: [],
+      randomQuote: []
     }
   },
   created () {
-    this.quotes = this.getQuotes()
-    this.authors = this.getAuthors()
-    this.quotedUsers = this.getQuotedUsers()
+    this.getQuotes()
+    this.getAuthors()
+    this.getQuotedUsers()
+    this.getRandomQuote()
   },
   methods: {
     getQuotes: function () {
-      this.$http.get(config.API_URL + '/quotes').then((response) => {
+      this.$http.get(config.API_URL + '/quotes/page/1/perpage/10').then((response) => {
         this.quotes = response.data
       }, (response) => {
         console.log('Quotes could not be loaded')
       })
     },
     getAuthors: function () {
-      this.$http.get(config.API_URL + '/authors').then((response) => {
+      this.$http.get(config.API_URL + '/authors/page/1/perpage/3').then((response) => {
         this.authors = response.data
       }, (response) => {
         console.log('Authors could not be loaded')
       })
     },
     getQuotedUsers: function () {
-      this.$http.get(config.API_URL + '/quoted').then((response) => {
+      this.$http.get(config.API_URL + '/quoted/page/1/perpage/3').then((response) => {
         this.quotedUsers = response.data
       }, (response) => {
         console.log('Quoted users could not be loaded')
+      })
+    },
+    getRandomQuote: function () {
+      this.$http.get(config.API_URL + '/quote/random').then((response) => {
+        this.randomQuote = response.data
+      }, (response) => {
+        console.log('Random quote could not be loaded')
       })
     }
   },
@@ -78,18 +92,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 { 
-  font-weight: normal;
-}
 
 ul {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+li > div {
   display: inline-block;
-  margin: 0 10px;
 }
 
 a {

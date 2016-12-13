@@ -8,6 +8,7 @@ import TopAuthorsView from './pages/TopAuthorsView.vue'
 import TopQuotedUsersView from './pages/TopQuotedUsersView.vue'
 import UserView from './pages/UserView.vue'
 import QuotesArchiveView from './pages/QuotesArchiveView.vue'
+import moment from 'moment'
 
 // install router
 Vue.use(VueRouter)
@@ -30,3 +31,6 @@ var router = new VueRouter({
 new Vue({
   router
 }).$mount('#app')
+
+// define system wide locale
+moment.locale('fr')
