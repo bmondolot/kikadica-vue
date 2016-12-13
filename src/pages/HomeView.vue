@@ -4,7 +4,9 @@
       <h2>The last quotes</h2>
       <ul>
           <li v-for="quote in quotes">
-              {{ quote.text }}
+            <div class="quoted">{{ quote.quotedUser }} said (the {{ quote.creationDate | moment }})</div>
+            <div class="quote">{{ quote.text }}</div>
+            <div class="author">brought back by {{ quote.authorUser }}</div>
           </li>
       </ul>
     </div>
@@ -24,6 +26,7 @@
 <script>
 import config from '../config'
 import SimpleList from '../components/SimpleList.vue'
+import moment from 'moment'
 
 export default {
   name: 'HomeView',
@@ -63,6 +66,11 @@ export default {
       }, (response) => {
         console.log('Quoted users could not be loaded')
       })
+    }
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('lll')
     }
   }
 }
