@@ -6,6 +6,7 @@
             <div class="quote">{{ quote.text }}</div>
             <div class="author">brought back by {{ quote.authorUser }}</div>
           </li>
+          <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
       </ul>
   </div>
 </template>
@@ -14,11 +15,12 @@
 import config from '../config'
 import UserList from '../components/UserList.vue'
 import moment from 'moment'
+import InfiniteLoading from 'vue-infinite-loading'
 
 export default {
   name: 'QuotesArchiveView',
   components: {
-    UserList
+    UserList, InfiniteLoading
   },
   data () {
     return {
@@ -35,6 +37,10 @@ export default {
       }, (response) => {
         console.log('Quotes could not be loaded')
       })
+    },
+    onInfinite: function () {
+      this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
+      console.log('on infinite')
     }
   },
   filters: {
