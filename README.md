@@ -29,9 +29,10 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 # Install Apache
 On Windows, run services.msc, stop "Service de publication du World Wide Web"
 Port 80 is now free to use
-Check that modules "mod_proxy_http" and "mod_proxy" are enabled
+Check that modules "mod_proxy_http", "mod_proxy" and "mod_rewrite" are enabled
 Add the following VirtualHost in "httpd.conf" file
 
+```
 <VirtualHost *:80>
   ProxyPreserveHost On
   RewriteEngine On
@@ -48,7 +49,7 @@ Add the following VirtualHost in "httpd.conf" file
   ProxyPass / http://localhost:8888/
   ProxyPassReverse / http://localhost:8888/
 </VirtualHost>
-
+```
 
 Back can be reached by this kind of URL : http://localhost/api/quotes/page/1/perpage/1
 Front can be reached by this kind of URL : http://localhost
