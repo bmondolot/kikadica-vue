@@ -33,18 +33,22 @@ Check that modules "mod_proxy_http" and "mod_proxy" are enabled
 Add the following VirtualHost in "httpd.conf" file
 
 <VirtualHost *:80>
-    ProxyPreserveHost On
-
-    # setup the proxy
-    <Proxy *>
-        Order allow,deny
-        Allow from all
-    </Proxy>                          
-    ProxyPass /api/ http://localhost:3000/
-    ProxyPassReverse /api/ http://localhost:3000/
-    ProxyPass / http://localhost:8888/
-    ProxyPassReverse / http://localhost:8888/
+  ProxyPreserveHost On
+  RewriteEngine On
+  
+  RewriteRule "^/rss$"  "/api/rss" [P]
+  
+  # setup the proxy
+  <Proxy *>
+    Order allow,deny
+    Allow from all
+  </Proxy>                          
+  ProxyPass /api/ http://localhost:3000/
+  ProxyPassReverse /api/ http://localhost:3000/
+  ProxyPass / http://localhost:8888/
+  ProxyPassReverse / http://localhost:8888/
 </VirtualHost>
+
 
 Back can be reached by this kind of URL : http://localhost/api/quotes/page/1/perpage/1
 Front can be reached by this kind of URL : http://localhost
