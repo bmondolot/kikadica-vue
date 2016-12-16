@@ -27,10 +27,10 @@ npm test
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 # Install Apache
-On Windows, run services.msc, stop "Service de publication du World Wide Web"
-Port 80 is now free to use
-Check that modules "mod_proxy_http", "mod_proxy" and "mod_rewrite" are enabled
-Add the following VirtualHost in "httpd.conf" file
+On Windows, run services.msc, stop "Service de publication du World Wide Web"<br>
+Port 80 is now free to use<br>
+Check that modules "mod_proxy_http", "mod_proxy" and "mod_rewrite" are enabled<br>
+Add the following VirtualHost in "httpd.conf" file<br>
 
 ```
 <VirtualHost *:80>
@@ -51,5 +51,5 @@ Add the following VirtualHost in "httpd.conf" file
 </VirtualHost>
 ```
 
-Back can be reached by this kind of URL : http://localhost/api/quotes/page/1/perpage/1
-Front can be reached by this kind of URL : http://localhost
+Back can be reached by this kind of URL : http://localhost/api/quotes/page/1/perpage/1<br>
+Front can be reached by this kind of URL : http://localhost<br>
