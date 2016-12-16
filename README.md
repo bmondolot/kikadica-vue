@@ -8,7 +8,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8888
 npm run dev
 
 # build for production with minification
@@ -42,8 +42,8 @@ Add the following VirtualHost in "httpd.conf" file
     </Proxy>                          
     ProxyPass /api/ http://localhost:3000/
     ProxyPassReverse /api/ http://localhost:3000/
-    ProxyPass / http://localhost:8080/
-    ProxyPassReverse / http://localhost:8080/
+    ProxyPass / http://localhost:8888/
+    ProxyPassReverse / http://localhost:8888/
 </VirtualHost>
 
 Back can be reached by this kind of URL : http://localhost/api/quotes/page/1/perpage/1
