@@ -24,23 +24,28 @@ export default {
   },
   data () {
     return {
-      quotes: []
+      quotes: [],
+      nextPage: 1,
+      pageSize: 100
     }
   },
-  created () {
-    this.getQuotes()
-  },
   methods: {
-    getQuotes: function () {
-      this.$http.get(config.API_URL + '/quotes/page/1/perpage/100').then((response) => {
-        this.quotes = response.data
+    getNextQuotesPage: function () {
+      this.$http.get(config.API_URL + '/quotes/page/' + this.nextPage + '/perpage/' + this.pageSize).then((response) => {
+        response.data.forEach((element) => this.quotes.push(element))
+        if (response.data.length === this.pageSize) {
+          this.nextPage = this.nextPage + 1
+        } else {
+          console.log('no more page to load')
+        }
+
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
       }, (response) => {
         console.log('Quotes could not be loaded')
       })
     },
     onInfinite: function () {
-      this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-      console.log('on infinite')
+      this.getNextQuotesPage()
     }
   },
   filters: {
