@@ -25,6 +25,7 @@
       list-title="Quoted users"
     >
     </user-list>
+    <add-quote-modal></add-quote-modal>
   </div>
 </template>
 
@@ -32,11 +33,12 @@
 import config from '../config'
 import UserList from '../components/UserList.vue'
 import moment from 'moment'
+import AddQuoteModal from '../components/AddQuoteModal.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    UserList
+    UserList, AddQuoteModal
   },
   data () {
     return {
