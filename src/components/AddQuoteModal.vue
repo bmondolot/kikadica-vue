@@ -53,23 +53,35 @@
 </template>
 
 <script>
-  export default {
-    name: 'add-quote-modal',
-    data () {
-      return {
-        showModal: false,
-        author: '',
-        quoteText: '',
-        quotedUser: '',
-        creationDate: ''
-      }
-    },
-    methods: {
-      submitForm: function () {
-        console.log('submit form')
-      }
+import config from '../config'
+import moment from 'moment'
+
+export default {
+  name: 'add-quote-modal',
+  data () {
+    return {
+      showModal: false,
+      author: '',
+      quoteText: '',
+      quotedUser: '',
+      creationDate: moment().format('DD-MM-YYYY HH:mm')
+    }
+  },
+  methods: {
+    submitForm: function () {
+      // Validate inputs
+      let quote = {}
+      quote.creationDate = this.creationDate
+      quote.text = this.quoteText
+      quote.authorUser = this.author
+      quote.quotedUser = this.quotedUser
+
+      this.$http.put(config.API_URL + '/quote', quote).then((response) => {
+        this.showModal = false
+      })
     }
   }
+}
 </script>
 
 <style>
