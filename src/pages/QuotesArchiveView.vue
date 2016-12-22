@@ -1,13 +1,13 @@
 <template>
   <div>
-      <ul>
-          <li v-for="quote in quotes">
-            <div class="quoted">{{ quote.quotedUser }} said (the {{ quote.creationDate | moment }})</div>
-            <div class="quote">{{ quote.text }}</div>
-            <div class="author">brought back by {{ quote.authorUser }}</div>
-          </li>
+      <table class="table">
+          <tr v-for="quote in quotes">
+            <td class="quoted">{{ quote.quotedUser }} a dit (le {{ quote.creationDate | moment }})</td>
+            <td class="quote">{{ quote.text }}</td>
+            <td class="author">rapporté par {{ quote.authorUser }}</td>
+          </tr>
           <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
-      </ul>
+      </table>
   </div>
 </template>
 

@@ -2,7 +2,7 @@
   <div>
     <user-list
       v-bind:items="authors"
-      list-title="Top Authors"
+      list-title="La liste des rapporteurs"
     >
     </user-list>
   </div>

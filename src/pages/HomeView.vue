@@ -1,28 +1,29 @@
 <template>
   <div>
     <div class="random-quote">
-      <div class="quoted">{{ randomQuote.quotedUser }} said (the {{ randomQuote.creationDate | moment }})</div>
+      <h2>Une citation au hasard</h2>
+      <div class="quoted">{{ randomQuote.quotedUser }} a dit (le {{ randomQuote.creationDate | moment }})</div>
       <div class="quote">{{ randomQuote.text }}</div>
-      <div class="author">brought back by {{ randomQuote.authorUser }}</div>
+      <div class="author">rapporté par {{ randomQuote.authorUser }}</div>
     </div>
     <div class="top10-list">
-      <h2>The last quotes</h2>
+      <h2>Les dernières citations</h2>
       <ul>
           <li v-for="quote in quotes">
             <div class="quoted">{{ quote.quotedUser }} said (the {{ quote.creationDate | moment }})</div>
             <div class="quote">{{ quote.text }}</div>
-            <div class="author">brought back by {{ quote.authorUser }}</div>
+            <div class="author">rapporté par {{ quote.authorUser }}</div>
           </li>
       </ul>
     </div>
     <user-list
       v-bind:items="authors"
-      list-title="Authors"
+      list-title="Ceux qui rapportent le plus"
     >
     </user-list>
     <user-list
       v-bind:items="quotedUsers"
-      list-title="Quoted users"
+      list-title="Les plus cités"
     >
     </user-list>
     <add-quote-modal></add-quote-modal>

@@ -2,7 +2,7 @@
   <div>
     <user-list
       v-bind:items="quotedUsers"
-      list-title="Top Quoted Users"
+      list-title="La liste des cités"
     >
     </user-list>
   </div>

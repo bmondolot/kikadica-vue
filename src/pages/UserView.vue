@@ -1,18 +1,18 @@
 <template>
   <div>
-      <h3>What he said</h3>
+      <h3>Ce qu'il a dit</h3>
       <ul>
         <li v-for="quote in quotesAsQuoted">
-          <div class="quoted">The {{ quote.creationDate | moment }}</div>
+          <div class="quoted">Le {{ quote.creationDate | moment }}</div>
           <div class="quote">{{ quote.text }}</div>
-          <div class="author">brought back by {{ quote.authorUser }}</div>
+          <div class="author">rapporté par {{ quote.authorUser }}</div>
         </li>
       </ul>
 
-      <h3>What he heard</h3>
+      <h3>Ce qu'il a rapporté</h3>
       <ul>
         <li v-for="quote in quotesAsAuthor">
-          <div class="quoted">{{ quote.quotedUser }} said (the {{ quote.creationDate | moment }})</div>
+          <div class="quoted">{{ quote.quotedUser }} a dit (le {{ quote.creationDate | moment }})</div>
           <div class="quote">{{ quote.text }}</div>
         </li>
       </ul>
