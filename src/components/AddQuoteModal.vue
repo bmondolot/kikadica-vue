@@ -17,16 +17,16 @@
                         <div class="modal-body">
                             <slot name="body">
                                 <div>
-                                    <label for="author">Kikiladit</label>
-                                    <input type="text" id="author" v-model="author">
+                                    <label>Kikiladit</label>
+                                    <multiselect v-model="quotedUser" tag-placeholder="Ajouter une nouvelle personne" placeholder="Rechercher ou ajouter" :options="peopleList" :taggable="true" @tag="addNewQuotedUser" select-label="(Entrer pour sélectionner)" selected-label="Choisi" deselect-label="" :hide-selected="true"></multiselect>
                                 </div>
                                 <div>
                                     <label for="quoteText">Citation</label>
                                     <textarea id="quoteText" v-model="quoteText" />
                                 </div>
                                 <div>
-                                    <label for="quotedUser">Kikilamis</label>
-                                    <input type="text" id="quotedUser" v-model="quotedUser">
+                                    <label>Kikilamis</label>
+                                    <multiselect v-model="author" tag-placeholder="Ajouter une nouvelle personne" placeholder="Rechercher ou ajouter" :options="peopleList" :taggable="true" @tag="addNewAuthor" select-label="(Entrer pour sélectionner)" selected-label="Choisi" deselect-label="" :hide-selected="true"></multiselect>
                                 </div>
                                 <div>
                                     <label for="creationDate">Quand</label>
@@ -55,12 +55,14 @@
 <script>
 import config from '../config'
 import moment from 'moment'
-import myDatepicker from 'vue-datepicker'
+import Datepicker from 'vue-datepicker'
+import Multiselect from 'vue-multiselect'
 
 export default {
   name: 'add-quote-modal',
   components: {
-    'date-picker': myDatepicker
+    'date-picker': Datepicker,
+    Multiselect
   },
   data () {
     return {
@@ -80,12 +82,19 @@ export default {
           ok: 'Ok',
           cancel: 'Annuler'
         }
-      }
+      },
+      peopleList: [
+        'Moi',
+        'Toi'
+      ]
     }
+  },
+  created () {
+    this.getPeopleList()
   },
   methods: {
     submitForm: function () {
-      // Validate inputs
+      // TODO : Validate inputs
       let quote = {}
       quote.creationDate = this.creationDate
       quote.text = this.quoteText
@@ -94,6 +103,21 @@ export default {
 
       this.$http.put(config.API_URL + '/quote', quote).then((response) => {
         this.showModal = false
+      })
+    },
+    addNewAuthor (newName) {
+      this.peopleList.push(newName)
+      this.author = newName
+    },
+    addNewQuotedUser (newName) {
+      this.peopleList.push(newName)
+      this.quotedUser = newName
+    },
+    getPeopleList: function () {
+      this.$http.get(config.API_URL + '/users').then((response) => {
+        this.peopleList = response.data
+      }, (response) => {
+        console.log('People list could not be populated')
       })
     }
   }
