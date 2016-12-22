@@ -1,7 +1,7 @@
 <template>
     <div>
         <button @click="showModal = true">
-            Add a quote
+            Ajouter une citation
         </button>
         <transition name="modal">
             <div v-if="showModal" class="modal-mask">
@@ -17,20 +17,20 @@
                         <div class="modal-body">
                             <slot name="body">
                                 <div>
-                                    <input type="text" id="author" v-model="author">
                                     <label for="author">Kikiladit</label>
+                                    <input type="text" id="author" v-model="author">
                                 </div>
                                 <div>
-                                    <input type="text" id="quoteText" v-model="quoteText">
                                     <label for="quoteText">Citation</label>
+                                    <textarea id="quoteText" v-model="quoteText" />
                                 </div>
                                 <div>
-                                    <input type="text" id="quotedUser" v-model="quotedUser">
                                     <label for="quotedUser">Kikilamis</label>
+                                    <input type="text" id="quotedUser" v-model="quotedUser">
                                 </div>
                                 <div>
-                                    <input type="datetime-local" id="creationDate" v-model="creationDate">
-                                    <label for="creationDate">Date</label>
+                                    <label for="creationDate">Quand</label>
+                                    <date-picker id="creationDate" v-bind:date="creationDate" v-bind:option="timeOption">
                                 </div>
                             </slot>
                         </div>
@@ -55,16 +55,32 @@
 <script>
 import config from '../config'
 import moment from 'moment'
+import myDatepicker from 'vue-datepicker'
 
 export default {
   name: 'add-quote-modal',
+  components: {
+    'date-picker': myDatepicker
+  },
   data () {
     return {
       showModal: false,
       author: '',
       quoteText: '',
       quotedUser: '',
-      creationDate: moment().format('DD-MM-YYYY HH:mm')
+      creationDate: {
+        time: moment().format('DD/MM/YYYY HH:mm')
+      },
+      timeOption: {
+        type: 'min',
+        week: ['Lu', 'Ma', 'Mer', 'Je', 'Ve', 'Sa', 'Di'],
+        month: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        format: 'DD/MM/YYYY HH:mm',
+        buttons: {
+          ok: 'Ok',
+          cancel: 'Annuler'
+        }
+      }
     }
   },
   methods: {
