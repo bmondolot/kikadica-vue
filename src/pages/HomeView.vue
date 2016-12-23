@@ -3,7 +3,7 @@
     <div class="random-quote" v-if="randomQuote">
       <h2>Une citation au hasard</h2>
       <div class="quoted">{{ randomQuote.quotedUser }} a dit (le {{ randomQuote.creationDate | moment }})</div>
-      <div class="quote">{{ randomQuote.text }}</div>
+      <div class="quote" v-html="randomQuote.text"></div>
       <div class="author">rapporté par {{ randomQuote.authorUser }}</div>
     </div>
     <div class="top10-list">
@@ -11,7 +11,7 @@
       <ul>
           <li v-for="quote in quotes">
             <div class="quoted">{{ quote.quotedUser }} a dit (le {{ quote.creationDate | moment }})</div>
-            <div class="quote">{{ quote.text }}</div>
+            <div class="quote" v-html="quote.text"></div>
             <div class="author">rapporté par {{ quote.authorUser }}</div>
           </li>
       </ul>
