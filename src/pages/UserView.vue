@@ -4,7 +4,7 @@
       <ul>
         <li v-for="quote in quotesAsQuoted">
           <div class="quoted">Le {{ quote.creationDate | moment }}</div>
-          <div class="quote">{{ quote.text }}</div>
+          <div class="quote" v-html="quote.text"></div>
           <div class="author">rapporté par {{ quote.authorUser }}</div>
         </li>
       </ul>
@@ -13,7 +13,7 @@
       <ul>
         <li v-for="quote in quotesAsAuthor">
           <div class="quoted">{{ quote.quotedUser }} a dit (le {{ quote.creationDate | moment }})</div>
-          <div class="quote">{{ quote.text }}</div>
+          <div class="quote" v-html="quote.text"></div>
         </li>
       </ul>
   </div>
