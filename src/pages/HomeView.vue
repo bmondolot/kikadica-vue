@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="random-quote">
+    <div class="random-quote" v-if="randomQuote">
       <h2>Une citation au hasard</h2>
       <div class="quoted">{{ randomQuote.quotedUser }} a dit (le {{ randomQuote.creationDate | moment }})</div>
       <div class="quote">{{ randomQuote.text }}</div>
