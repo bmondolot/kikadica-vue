@@ -29,6 +29,9 @@ export default {
       pageSize: 100
     }
   },
+  created () {
+    this.getNextQuotesPage()
+  },
   methods: {
     getNextQuotesPage: function () {
       this.$http.get(config.API_URL + '/quotes/page/' + this.nextPage + '/perpage/' + this.pageSize).then((response) => {
