@@ -3,7 +3,7 @@
       <table class="table">
           <tr v-for="quote in quotes">
             <td class="quoted">{{ quote.quotedUser }} a dit (le {{ quote.creationDate | moment }})</td>
-            <td class="quote">{{ quote.text }}</td>
+            <td class="quote" v-html="quote.text"></td>
             <td class="author">rapporté par {{ quote.authorUser }}</td>
           </tr>
           <infinite-loading :on-infinite="onInfinite" ref="infiniteLoading"></infinite-loading>
