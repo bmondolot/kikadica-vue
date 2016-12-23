@@ -10,7 +10,7 @@
       <h2>Les dernières citations</h2>
       <ul>
           <li v-for="quote in quotes">
-            <div class="quoted">{{ quote.quotedUser }} said (the {{ quote.creationDate | moment }})</div>
+            <div class="quoted">{{ quote.quotedUser }} a dit (le {{ quote.creationDate | moment }})</div>
             <div class="quote">{{ quote.text }}</div>
             <div class="author">rapporté par {{ quote.authorUser }}</div>
           </li>
